@@ -1,3 +1,4 @@
+import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
@@ -40,14 +41,14 @@ export default function EventPage({ evt }) {
         </div>
 
         <span>
-          {new Date(evt.date).toLocaleDateString("bo-BO")}
+          {moment(evt.date).format("yyyy-MM-DD")}
           <strong> a las </strong> {evt.time}
         </span>
         <h1>{evt.name}</h1>
         <ToastContainer />
         {evt.image && (
           <div className={styles.image}>
-            <Image src={evt.image.formats.large.url} width={960} height={600} />
+            <Image src={evt.image.formats.small.url} width={960} height={600} />
           </div>
         )}
 
