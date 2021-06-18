@@ -12,24 +12,10 @@ import { useRouter } from "next/router";
 export default function EventPage({ evt }) {
   const router = useRouter();
 
-  const deleteEvent = async (e) => {
-    if (confirm("Estas seguro de querer eliminar?")) {
-      const res = await fetch(`${API_URL}/events/${evt.id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.message);
-      } else {
-        router.push("/events");
-      }
-    }
-  };
-
   return (
     <Layout>
       <div className={styles.event}>
-        <div className={styles.controls}>
+        {/* <div className={styles.controls}>
           <Link href={`/events/edit/${evt.id}`}>
             <a>
               <FaPencilAlt /> Editar Evento
@@ -38,7 +24,7 @@ export default function EventPage({ evt }) {
           <a href="#" className={styles.delete} onClick={deleteEvent}>
             <FaTimes /> Eliminar Evento
           </a>
-        </div>
+        </div> */}
 
         <span>
           {moment(evt.date).format("yyyy-MM-DD")}
