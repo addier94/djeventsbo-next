@@ -18,7 +18,7 @@ export default function DashboardEvent({ evt, handleDelete }) {
       <a
         href="#"
         className={styles.delete}
-        onClick={() => handleDelete(evt.id)}
+        onClick={() => handleDelete(evt.id, evt.image && evt.image.id)}
       >
         <FaTimes /> <span>Eliminar</span>
       </a>

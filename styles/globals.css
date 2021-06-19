@@ -39,6 +39,33 @@ h1 {
   opacity: 0.9;
 }
 
+.spinner_content{
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  width: 100%;
+  padding: .6rem 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.spinner__svg {
+  fill: currentColor;
+  color: white;
+  width: 1.4rem;
+  height: 1.4rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .btn-secondary {
   font: inherit;
   font-size: 13px;

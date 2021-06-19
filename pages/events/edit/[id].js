@@ -30,6 +30,11 @@ export default function EditEventPage({ evt, token }) {
 
   const router = useRouter();
 
+  const openModal = async (e) => {
+    setShowModal(true);
+    window.scroll({ top: 0 });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -166,7 +171,7 @@ export default function EditEventPage({ evt, token }) {
       )}
 
       <div>
-        <button onClick={() => setShowModal(true)} className="btn-secondary">
+        <button onClick={openModal} className="btn-secondary">
           <FaImage /> Subir Imagen
         </button>
       </div>

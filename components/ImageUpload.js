@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { API_URL } from "../config";
 import styles from "@/styles/Form.module.css";
+import { CgSpinner } from "react-icons/cg";
 
 export default function ImageUpload({ evtId, imageUploaded, token }) {
   const [image, setImage] = useState(null);
+  const [spinner, setSpinner] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSpinner(true);
     const formData = new FormData();
     formData.append("files", image);
     formData.append("ref", "events");
@@ -23,6 +26,7 @@ export default function ImageUpload({ evtId, imageUploaded, token }) {
 
     if (res.ok) {
       imageUploaded();
+      setSpinner(false);
     }
   };
 
@@ -33,12 +37,22 @@ export default function ImageUpload({ evtId, imageUploaded, token }) {
 
   return (
     <div className={styles.form}>
-      <h1>Subir Imagen para el evento</h1>
+      <h1>Subir Imagen</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.file}>
           <input type="file" onChange={handleFileChange} />
         </div>
-        <input type="submit" value="Subir" className="btn" />
+        <button
+          disabled={spinner}
+          type="submit"
+          className="btn spinner_content"
+        >
+          {spinner ? (
+            <CgSpinner className="spinner__svg" />
+          ) : (
+            <span>Subir</span>
+          )}
+        </button>
       </form>
     </div>
   );

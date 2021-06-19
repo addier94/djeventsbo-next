@@ -7,19 +7,22 @@ import { useRouter } from "next/router";
 
 export default function DashboardPage({ events, token }) {
   const router = useRouter();
-  const deleteEvent = async (id) => {
+  const deleteEvent = async (id, imageId) => {
     if (confirm("Estas seguro de querer eliminar?")) {
-      const res = await fetch(`${API_URL}/events/${id}`, {
+      const headers = {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.message);
+      };
+      // If imageId is positive or negative number, event has images in DB
+      if (!!imageId) {
+        await Promise.all([
+          fetch(`${API_URL}/upload/files/${imageId}`, headers),
+          fetch(`${API_URL}/events/${id}`, headers),
+        ]);
       } else {
-        router.reload();
+        await fetch(`${API_URL}/events/${id}`, headers);
       }
     }
   };
