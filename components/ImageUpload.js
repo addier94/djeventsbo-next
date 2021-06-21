@@ -3,7 +3,12 @@ import { API_URL } from "../config";
 import styles from "@/styles/Form.module.css";
 import { CgSpinner } from "react-icons/cg";
 
-export default function ImageUpload({ evtId, imageUploaded, token }) {
+export default function ImageUpload({
+  evtId,
+  imageUploaded,
+  token,
+  imagePreview,
+}) {
   const [image, setImage] = useState(null);
   const [spinner, setSpinner] = useState(false);
 
@@ -16,18 +21,36 @@ export default function ImageUpload({ evtId, imageUploaded, token }) {
     formData.append("refId", evtId);
     formData.append("field", "image");
 
-    const res = await fetch(`${API_URL}/upload`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-
-    if (res.ok) {
-      imageUploaded();
-      setSpinner(false);
+    if (imagePreview) {
+      // delete existing image
+      await Promise.all([
+        fetch(`${API_URL}/upload/files/${imagePreview.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        fetch(`${API_URL}/upload`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }),
+      ]).then(() => {
+        imageUploaded();
+      });
+    } else {
+      const res = await fetch(`${API_URL}/upload`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      if (res.ok) imageUploaded();
     }
+    setSpinner(false);
   };
 
   const handleFileChange = (e) => {

@@ -12,6 +12,7 @@ import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
+import { TiDelete } from "react-icons/ti";
 
 export default function EditEventPage({ evt, token }) {
   const [values, setValues] = useState({
@@ -24,7 +25,7 @@ export default function EditEventPage({ evt, token }) {
     description: evt.description,
   });
   const [imagePreview, setImagePreview] = useState(
-    evt.image ? evt.image.formats.thumbnail.url : null
+    evt.image ? evt.image : null
   );
   const [showModal, setShowModal] = useState(false);
 
@@ -43,7 +44,7 @@ export default function EditEventPage({ evt, token }) {
       (element) => element === ""
     );
     if (hasEmptyFields) {
-      toast.error("Por favor llena los campos");
+      toast.error("Por favor llena todos los campos");
     }
 
     const res = await fetch(`${API_URL}/events/${evt.id}`, {
@@ -72,11 +73,24 @@ export default function EditEventPage({ evt, token }) {
     setValues({ ...values, [name]: value });
   };
 
-  const imageUploaded = async (e) => {
+  const imageUploaded = async () => {
     const res = await fetch(`${API_URL}/events/${evt.id}`);
     const data = await res.json();
-    setImagePreview(data.image.formats.thumbnail.url);
+
+    setImagePreview(data.image);
     setShowModal(false);
+  };
+
+  const deleteImage = async () => {
+    const res = await fetch(`${API_URL}/upload/files/${imagePreview.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.ok) {
+      setImagePreview(null);
+    }
   };
 
   return (
@@ -163,7 +177,14 @@ export default function EditEventPage({ evt, token }) {
 
       <h2>Imagen para el evento</h2>
       {imagePreview ? (
-        <Image src={imagePreview} height={100} width={170} />
+        <div className={styles.content_imgpreview}>
+          <TiDelete onClick={deleteImage} className={styles.imgpreview_svg} />
+          <Image
+            src={imagePreview.formats.thumbnail.url}
+            height={100}
+            width={170}
+          />
+        </div>
       ) : (
         <div>
           <p>No hay imagen para este evento</p>
@@ -180,6 +201,7 @@ export default function EditEventPage({ evt, token }) {
         <ImageUpload
           evtId={evt.id}
           imageUploaded={imageUploaded}
+          imagePreview={imagePreview}
           token={token}
         />
       </Modal>

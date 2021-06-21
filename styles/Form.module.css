@@ -37,3 +37,20 @@
     grid-template-columns: 1fr;
   }
 }
+.content_imgpreview{
+  position: relative;
+  display: inline-block;
+  margin-top: 6px;
+}
+.imgpreview_svg{
+  fill: currentColor;
+  margin-top: -22px;
+  margin-right: -16px;
+  color: red;
+  width: 2rem;
+  cursor: pointer;
+  height: 2rem;
+  position: absolute;
+  z-index: 10;
+  right: 0;
+}
