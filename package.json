@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "cookie": "^0.4.1",
@@ -18,5 +19,12 @@
     "react-icons": "^4.2.0",
     "react-map-gl": "^6.1.16",
     "react-toastify": "^7.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-jest": "^27.0.5",
+    "@testing-library/react": "^11.2.7",
+    "jest": "^27.0.5"
   }
 }
