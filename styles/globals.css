@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Calligraffitti|Mali");
+
 
 * {
   box-sizing: border-box;
@@ -6,10 +7,19 @@
   padding: 0;
 }
 
+:root {
+  --mainYellow: #fdbe02;
+  --mainWhite: #fff;
+  --mainBlack: #071013;
+  --mainGrey: #9b9999;
+  --TransGrey: rgba(0, 0, 0, 0.1);
+}
+
 html,
 body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.8;
+  font-family: "Mali", cursive;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
 }
 
 a {
@@ -68,26 +78,48 @@ h1 {
 
 .btn-secondary {
   font: inherit;
-  font-size: 13px;
-  background: #000;
-  color: #fff !important;
-  border: 0;
-  border-radius: 5px;
-  padding: 5px 15px;
-  margin: 0 20px;
+  font-size: 1.2rem;
+  background: var(--mainYellow);
+  color: var(--mainBlack)!important;
+  padding: 8px 15px;
+  margin-left: 8px;
   cursor: pointer;
+  display: inline-block;
 }
 
 .btn-secondary:hover {
-  opacity: 0.8;
+  background: var(--mainBlack);
+  color: var(--mainYellow)!important;
+}
+.btn-primary{
+  font-size: 1.2rem;
+  border: 1px solid var(--mainBlack);
+  color: var(--mainBlack)!important;
+  padding: 8px 15px;
+  margin-left: 8px;
+}
+.btn-primary:hover{
+  background: var(--mainBlack);
+  color: var(--mainWhite)!important;
 }
 
-.btn-icon {
+/* .btn-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .btn-icon svg {
   margin-right: 5px;
+}
+input:focus{
+  border: 1px solid var(--mainYellow)!important;
+  -webkit-box-shadow: 0 0 4px 0 var(--mainYellow)!important;
+  box-shadow: 0 0 4px 0 var(--mainYellow)!important;
+  outline: none;
+}
+
+.navActive{
+  border-bottom: .05rem solid var(--mainYellow);
+  color: var(--mainBlack)!important;
 }
