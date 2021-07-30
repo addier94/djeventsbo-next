@@ -1,6 +1,6 @@
 import { FaSignOutAlt, FaBars, FaRegWindowClose } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Search from "./Search";
 import AuthContext from "@/context/AuthContext";
@@ -12,9 +12,6 @@ export default function Header() {
   const router = useRouter();
   const [toggleNav, setToggleNav] = useState(false);
 
-  const active = (currentRoute) => {
-    return router.pathname === currentRoute ? "navActive" : "";
-  };
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -25,20 +22,16 @@ export default function Header() {
 
       <Search />
 
-      <nav style={{ display: toggleNav && "none" }}>
+      <nav style={{ display: !toggleNav && "none" }}>
         <ul>
           <li className={styles.nav_list}>
-            <Link href="/events">
-              <a className={active("/events")}>Events</a>
-            </Link>
+            <ActiveLink children="Events" href="/events" />
           </li>
           {user ? (
             // If logged in
             <>
               <li className={styles.nav_list}>
-                <Link href="/events/add">
-                  <a className={active("/events/add")}>Añadir evento</a>
-                </Link>
+                <ActiveLink children="Añadir evento" href="/events/add" />
               </li>
               <li className={styles.last_list}>
                 <button type="button">
@@ -46,9 +39,7 @@ export default function Header() {
                 </button>
                 <ul className={styles.list_child}>
                   <li>
-                    <Link href="/account/dashboard">
-                      <a>Perfil</a>
-                    </Link>
+                    <ActiveLink children="Perfil" href="/account/dashboard" />
                   </li>
                   <li onClick={() => logout()}>
                     <a>
@@ -61,7 +52,7 @@ export default function Header() {
           ) : (
             // If logged out
             <>
-              <li style={{ "padding-top": "1.2rem" }}>
+              <li style={{ paddingTop: "1.2rem" }}>
                 <Link href="/account/register">
                   <a className="btn-secondary btn-icon">Registrarse</a>
                 </Link>
@@ -74,12 +65,12 @@ export default function Header() {
         </ul>
       </nav>
       {toggleNav ? (
-        <FaBars
+        <FaRegWindowClose
           className={styles.bars}
           onClick={() => setToggleNav(!toggleNav)}
         />
       ) : (
-        <FaRegWindowClose
+        <FaBars
           className={styles.bars}
           onClick={() => setToggleNav(!toggleNav)}
         />
@@ -87,3 +78,21 @@ export default function Header() {
     </header>
   );
 }
+
+export const ActiveLink = ({ children, href }) => {
+  const router = useRouter();
+
+  const active = {
+    navActive: router.asPath === href ? "navActive" : "",
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    router.push(href);
+  };
+  return (
+    <a href={href} onClick={handleClick} className={active.navActive}>
+      {children}
+    </a>
+  );
+};

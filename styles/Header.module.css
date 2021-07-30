@@ -63,10 +63,13 @@
 .header li .list_child{
   font-size: 1.4rem;
   color: var(--mainGrey);
-  padding: 0 1.2rem;
 }
 .header li .list_child li{
-  padding: 8px 0;
+}
+.header li .list_child li a {
+  padding: .5rem 1.2rem;
+  /* padding: 8px 0; */
+  display: block;
 }
 
 
