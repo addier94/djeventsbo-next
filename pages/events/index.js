@@ -8,10 +8,13 @@ export default function EventsPage({ events, page, total }) {
     <Layout>
       <h1>eventos</h1>
       {events.length === 0 && <h2>No hay eventos para mostrar</h2>}
-
-      {events.map((evt) => (
-        <EventItem key={evt.id} evt={evt} />
-      ))}
+      <div
+        style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start" }}
+      >
+        {events.map((evt) => (
+          <EventItem key={evt.id} evt={evt} />
+        ))}
+      </div>
 
       <Pagination page={page} total={total} />
     </Layout>

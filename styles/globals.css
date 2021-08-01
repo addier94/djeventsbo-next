@@ -11,6 +11,7 @@
   --mainYellow: #fdbe02;
   --mainWhite: #fff;
   --mainBlack: #071013;
+  --mianBlack2:#363636;
   --mainGrey: #9b9999;
   --TransGrey: rgba(0, 0, 0, 0.1);
 }
@@ -18,7 +19,7 @@
 html,
 body {
   font-family: "Mali", cursive;
-  color: var(--mainBlack);
+  color: var(--mianBlack2);
   background: var(--mainWhite);
 }
 
@@ -33,16 +34,6 @@ p {
 
 h1 {
   margin-bottom: 20px;
-}
-
-.btn {
-  display: inline-block;
-  background: red;
-  color: #fff;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: 0;
-  border-radius: 5px;
 }
 
 .btn:hover {
@@ -85,6 +76,8 @@ h1 {
   margin-left: 8px;
   cursor: pointer;
   display: inline-block;
+  cursor: pointer;
+  transition: .3s;
 }
 
 .btn-secondary:hover {
@@ -97,10 +90,20 @@ h1 {
   color: var(--mainBlack)!important;
   padding: 8px 15px;
   margin-left: 8px;
+  cursor: pointer;
+  transition: .3s;
 }
 .btn-primary:hover{
   background: var(--mainBlack);
   color: var(--mainWhite)!important;
+}
+.bagde{
+  border: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: .7rem;
+  margin: 6px 0;
+  transition: .3s;
 }
 
 /* .btn-icon {

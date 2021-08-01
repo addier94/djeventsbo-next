@@ -8,10 +8,13 @@ export default function HomePage({ events }) {
     <Layout>
       <h1>Próximos eventos</h1>
       {events.length === 0 && <h2>No hay eventos para mostrar</h2>}
-
-      {events.map((evt) => (
-        <EventItem key={evt.id} evt={evt} />
-      ))}
+      <div
+        style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start" }}
+      >
+        {events.map((evt) => (
+          <EventItem key={evt.id} evt={evt} />
+        ))}
+      </div>
 
       {events.length > 0 && (
         <Link href="/events">
