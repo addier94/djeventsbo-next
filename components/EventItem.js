@@ -5,15 +5,14 @@ import styles from "@/styles/EventItem.module.css";
 import { HiLocationMarker } from "react-icons/hi";
 
 export default function EventItem({ evt }) {
-  console.log(evt);
   return (
     <div className={styles.event}>
       <Link href={`/events/${evt.slug}`}>
         <div className={styles.img_wrapper}>
           <Image
             src={
-              evt.image
-                ? evt.image.formats.thumbnail.url
+              evt.image?.formats.small
+                ? evt.image.formats.small.url
                 : "/images/event-default.png"
             }
             layout="fill"

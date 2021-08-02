@@ -14,13 +14,16 @@
   --mianBlack2:#363636;
   --mainGrey: #9b9999;
   --TransGrey: rgba(0, 0, 0, 0.1);
+
+  --mainGrey2: #f1f1f1;
+  --mainBody: #f5f5f5;
 }
 
 html,
 body {
   font-family: "Mali", cursive;
   color: var(--mianBlack2);
-  background: var(--mainWhite);
+  background: var(--mainBody);
 }
 
 a {

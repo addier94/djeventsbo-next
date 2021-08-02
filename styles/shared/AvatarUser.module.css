@@ -1,0 +1,8 @@
+.img_wrapper{
+  position: relative;
+}
+.img_wrapper img{
+  position: absolute;
+  border-radius: 50%;
+  object-fit: cover;
+}

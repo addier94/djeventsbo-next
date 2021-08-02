@@ -1,0 +1,7 @@
+.image_wrapper{
+  position: relative;
+}
+.image_wrapper img{
+  object-fit: cover;
+  filter: brightness(0.50);
+}
