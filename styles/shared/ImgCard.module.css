@@ -3,5 +3,5 @@
 }
 .image_wrapper img{
   object-fit: cover;
-  filter: brightness(0.50);
+  /* filter: brightness(0.50); */
 }

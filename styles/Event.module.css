@@ -23,8 +23,21 @@
 }
 
 .event_detail {
-  color: blueviolet;
+  color: var(--mainBlack);
   margin-top: 100px;
+}
+.event_detail .detail_left{
+  background-color: var(--mainWhite);
+  margin: 1px .8rem;
+  padding: 2px 1rem;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+.event_detail .detail_left p:nth-child(odd){
+  font-weight: 600;
+}
+.event_detail .detail_rigth{
+  
 }
 
 

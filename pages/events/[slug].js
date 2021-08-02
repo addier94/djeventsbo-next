@@ -18,7 +18,7 @@ export default function EventPage({ evt }) {
   return (
     <Layout>
       <div className={styles.image}>
-        <ImgCard image={evt.image} h_img={"260px"} />
+        <ImgCard image={evt.image} h_img={"260px"} brightness="0.5" />
       </div>
       <div className={styles.user_wrapper}>
         <span>
@@ -32,13 +32,29 @@ export default function EventPage({ evt }) {
         </div>
       </div>
       <div className={styles.event_detail}>
-        <p>{evt.performers}</p>
-        <h3>Descripción:</h3>
-        <p>{evt.description}</p>
-        <h3>Lugar de evento: {evt.venue}</h3>
-        <p>{evt.address}</p>
+        <div className={styles.detail_left}>
+          <p>Fecha</p>
+          <p>{moment(evt.date).format("YYY-MM-DD")}</p>
+          <p>Hora</p>
+          <p>{evt.time}</p>
+          <p>Lugar de evento </p>
+          <p>
+            {evt.venue} - {evt.address}
+          </p>
+          <p>Quienes organizan</p>
+          <p>{evt.performers}</p>
+          <ImgCard image={"/images/location.png"} h_img={"360px"} />
+          {/* <EventMap evt={evt} /> */}
 
-        {/* <EventMap evt={evt} /> */}
+          {/* <h3>Descripción:</h3>
+          <p>{evt.description}</p> */}
+        </div>
+        <div>
+          <p>Quienes Asistiran</p>
+        </div>
+        <div className={styles.detail_right}>
+          <h5 className="about">Sobre la reunion</h5>
+        </div>
 
         <Link href="/events">
           <a className={styles.back}>{"<"} Volver atrás</a>
