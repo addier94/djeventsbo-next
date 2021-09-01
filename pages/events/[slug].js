@@ -14,7 +14,7 @@ import { ImgCard } from "@/components/shared/ImgCard";
 export default function EventPage({ evt }) {
   const router = useRouter();
   // console.log(evt.user.avatar);
-
+  console.log("evt", evt);
   return (
     <Layout>
       <div className={styles.image}>
@@ -44,21 +44,11 @@ export default function EventPage({ evt }) {
           <p>Quienes organizan</p>
           <p>{evt.performers}</p>
           <ImgCard image={"/images/location.png"} h_img={"360px"} />
-          {/* <EventMap evt={evt} /> */}
-
-          {/* <h3>Descripción:</h3>
-          <p>{evt.description}</p> */}
-        </div>
-        <div>
-          <p>Quienes Asistiran</p>
         </div>
         <div className={styles.detail_right}>
-          <h5 className="about">Sobre la reunion</h5>
+          <p>Quienes Asistiran</p>
+          <p className={styles.desc}>{evt.description}</p>
         </div>
-
-        <Link href="/events">
-          <a className={styles.back}>{"<"} Volver atrás</a>
-        </Link>
       </div>
       <ToastContainer />
     </Layout>

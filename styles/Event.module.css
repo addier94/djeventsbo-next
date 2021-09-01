@@ -36,10 +36,21 @@
 .event_detail .detail_left p:nth-child(odd){
   font-weight: 600;
 }
-.event_detail .detail_rigth{
-  
+@media(min-width: 760px){
+  .event_detail{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .detail_right p {
+    margin-top: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .detail_right p.desc{
+    font-size: 1.3rem;
+    font-weight: 200;
+  }
 }
-
 
 /* 
 .event h3 {
